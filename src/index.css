@@ -21,7 +21,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
-    max-width: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,8 +39,14 @@ h1 {
 
 }
 
+.city-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .city {
+    width: 350px;
     text-align: center;
     border: 1px solid #000000;
     margin: 1rem;
@@ -50,7 +56,7 @@ h1 {
     font-family: 'Segoe UI', sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, background-color 0.2s ease;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .city:hover {
@@ -61,11 +67,11 @@ h1 {
 .buttons {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
 
 .details-btn {
-    background-color:  #1e3a8a;
+    background-color: #1e3a8a;
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
@@ -80,7 +86,7 @@ h1 {
 }
 
 .delete-btn {
-    background-color:  #ff0000;
+    background-color: #ff0000;
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
@@ -101,13 +107,13 @@ h1 {
 .Navbar {
     display: flex;
     justify-content: space-between;
-    background-color: #8a1e7c;
+    background-color: #1e3a8a;
     margin: 1rem;
 }
 
 .Navbar button {
-    background-color:  white;
-    color: #8a1e7c;
+    background-color: white;
+    color: #1e3a8a;
     padding: 8px 40px;
     border-radius: 8px;
     border: none;
