@@ -15,8 +15,9 @@ function HomePage(props) {
                     <div>
                         <h2>{city}</h2>
                     </div>
-                    <div>
-                        <Link to={`/regions/${city}`} className="details-btn"> More Details</Link>
+                    <div className="buttons">
+                        <Link to={`/regions/${city}`} className="details-btn">More Details</Link>
+                        <Link to={``} className="delete-btn">Delete</Link>
                     </div>
                 </div>
             ))}

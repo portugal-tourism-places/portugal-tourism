@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 
 import RegionDetails from "./pages/RegionsDetails";
 import About from "./pages/About";
@@ -47,6 +49,7 @@ function App() {
         <Route path="*" element={<h1>Page not found</h1>} />
         <Route path="/about" element={<About></About>} />
       </Routes>
+      <Footer />
     </>
   );
 }
