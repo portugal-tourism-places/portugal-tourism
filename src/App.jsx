@@ -1,25 +1,53 @@
 import { Routes, Route } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./components/Navbar";
-import HomePage from "./pages/Homepage";
-
-
-
+import HomePage from "./pages/HomePage";
+import RegionDetails from "./components/RegionsDetails";
+import About from "./pages/About";
 
 function App() {
+  const [cities, setCities] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      axios
+          .get("https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/.json")
+          .then((response) => {
+              const data = response.data;
+
+              if (data) {
+                  const cityNames = Object.keys(data);
+                  setCities(cityNames);
+              } else {
+                  setCities([]);
+              }
+          })
+          .catch((e) => {
+              console.log("Error finding cities", e);
+              setError("Failed to load cities. Please try again later.");
+          });
+  }, []);
+
+  if (error) {
+      return <h3>{error}</h3>;
+  }
+
+  if (cities.length === 0) {
+      return <h3>Loading...</h3>;
+  }
 
   return (
     <>
-
       <Navbar />
-
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage regions={cities} />} />
+        <Route path="/regions/:regionId" element={<RegionDetails />} />
+        <Route path="*" element={<h1>Page not found</h1>} />
+        <Route path="/about" element={<About></About>} />
       </Routes>
-
     </>
-  )
-
+  );
 }
 
-export default App
+export default App;
