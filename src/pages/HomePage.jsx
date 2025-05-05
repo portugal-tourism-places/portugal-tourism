@@ -8,7 +8,7 @@ function HomePage(props) {
             <h1>Portugal Tourism</h1>
             {props.regions.map((city) => (
                 <div key={city}>
-                    <div className="city">
+                    <div className="region">
                         <h2>{city}</h2>
                     </div>
                     <div>
