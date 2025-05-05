@@ -1,8 +1,22 @@
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/Homepage";
+
+
+
+
 function App() {
 
   return (
     <>
-      <h1>Portugal Tourism</h1>
+
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+
     </>
   )
 
