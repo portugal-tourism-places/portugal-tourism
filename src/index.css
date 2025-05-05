@@ -4,3 +4,10 @@
     padding: 0.5rem;
     margin: 1rem;
 }
+
+.city {
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 0.5rem;
+    margin: 1rem;
+}
