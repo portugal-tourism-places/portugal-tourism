@@ -10,11 +10,14 @@ function HomePage(props) {
     return (
         <>
             <h1>Portugal Tourism</h1>
-            {cities.map((city) => (
-                <div key={city.id} className="city">
-                    <h2>{city.name}</h2>
-                    <img src={city.image} alt={city.name} />
-                    <Link to={`/regions/${city.id}`}>More Details</Link>
+            {props.regions.map((city) => (
+                <div key={city} className="city">
+                    <div>
+                        <h2>{city}</h2>
+                    </div>
+                    <div>
+                        <Link to={`/regions/${city}`} className="details-btn"> More Details</Link>
+                    </div>
                 </div>
             ))}
         </>
