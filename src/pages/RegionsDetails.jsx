@@ -23,6 +23,7 @@ function RegionDetails() {
 
   return (
     <div>
+
       <h1>{regionId}</h1>
 
       {region.photo &&
@@ -45,7 +46,7 @@ function RegionDetails() {
             {Object.entries(item)
               .filter(([key]) => key.startsWith("recommendation"))
               .map(([key, value]) => (
-                <li key={key}>{value}</li>
+                <p>{value}</p>
               ))}
           </div>
         ))}
