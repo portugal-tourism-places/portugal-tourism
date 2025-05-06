@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function CityInfo() {
+function RegionDetails() {
   const [region, setRegion] = useState(null);
   const { regionId } = useParams();
 
@@ -24,18 +24,58 @@ function CityInfo() {
   return (
     <div>
       <h1>{regionId}</h1>
-      <div className="region">
-        {Object.entries(region).map(([id, data]) => (
-          <div className="region-card" key={id}>
-            <h2>{data.place}</h2>
-            <h3>{data.description}</h3>
-            <img src={data.image} alt={`Image of ${data.place}`} />
-            <h4>{data.recommendation}</h4>
+
+      {region.photo &&
+        Object.values(region.photo).map((item, index) => (
+          <img key={index} src={item.image} alt="City view" />
+        ))}
+
+      <h2>History</h2>
+      {region.history &&
+        Object.values(region.history).map((item, index) => (
+          <p key={index}>{item.text}</p>
+        ))}
+
+      <h2>Food</h2>
+      {region.food &&
+        Object.values(region.food).map((item, index) => (
+          <div key={index}>
+            {item.text && <p>{item.text}</p>}
+            {item.description && <p>{item.description}</p>}
+            {Object.entries(item)
+              .filter(([key]) => key.startsWith("recommendation"))
+              .map(([key, value]) => (
+                <li key={key}>{value}</li>
+              ))}
           </div>
         ))}
-      </div>
+
+      <h2>Places to visit</h2>
+      {region["places-to-visit"] &&
+        Object.values(region["places-to-visit"]).map((item, index) => {
+          const imageKeys = Object.keys(item)
+            .filter((key) => key.startsWith("image"))
+            .sort();
+          const recommendationKeys = Object.keys(item)
+            .filter((key) => key.startsWith("recommendation"))
+            .sort();
+
+          return (
+            <div key={index}>
+              {imageKeys.map((imgKey, i) => {
+                const recKey = recommendationKeys[i];
+                return (
+                  <div key={imgKey}>
+                    <img src={item[imgKey]} alt={`Place ${i + 1}`} />
+                    <p>{item[recKey]}</p>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
     </div>
   );
 }
 
-export default CityInfo;
+export default RegionDetails;
