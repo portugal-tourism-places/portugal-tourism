@@ -49,7 +49,7 @@ function App() {
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="*" element={<h1>Page not found</h1>} />
         <Route path="/about" element={<About></About>} />
-        <Route path="/regions/edit/:regionId" element={<EditRegion></EditRegion>} />
+        <Route path="/regions/edit/:regionId" element={<EditRegion />} />
       </Routes>
       <Footer />
     </>

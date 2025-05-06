@@ -12,28 +12,31 @@ function EditRegion() {
     const [food, setFood] = useState("");
     const [placesToVisit, setPlacesToVisit] = useState("");
 
+ 
+
     useEffect(()=>{
         axios
         .get(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/${regionId}.json`)
         .then((response)=>{
-            setHistory(response.data.history)
-            setFood(response.data.food)
-            setPlacesToVisit(response.data.placesToVisit)
+            console.log("API Response:", response.data)
+            setHistory(response.data.history || "")
+            setFood(response.data.food || "")
+            setPlacesToVisit(response.data.placesToVisit ||"")
         })
-        .catch((error)=> console.log("error"))
+        .catch((error)=> console.log("error", error))
     }, [regionId])
 
     const handleSubmit=(e)=>{
         e.preventDefault()
 
         const newDetails={
-            "history": history,
-            "food": food,
-            "placesToVisit": placesToVisit,
+            history: history,
+            food: food,
+            placesToVisit: placesToVisit,
         }
 
         axios.put(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/${regionId}.json`, newDetails)
-        .then(response=>{
+        .then((response)=>{
             navigate(`/regions/${regionId}`)
         })
         .catch(e=> console.log("error", e))
