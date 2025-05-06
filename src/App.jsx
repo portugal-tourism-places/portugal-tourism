@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 
-import RegionDetails from "./pages/RegionsDetails";
+import RegionDetails from "./pages/RegionDetails";
 import About from "./pages/About";
 
 function App() {
