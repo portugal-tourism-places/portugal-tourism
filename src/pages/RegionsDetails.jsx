@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function RegionDetails() {
   const [region, setRegion] = useState(null);
@@ -74,6 +75,7 @@ function RegionDetails() {
             </div>
           );
         })}
+        <Link to={`/regions/edit/${regionId}`}>Edit Region</Link>
     </div>
   );
 }

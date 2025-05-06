@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 
 import RegionDetails from "./pages/RegionsDetails";
 import About from "./pages/About";
+import EditRegion from "./pages/EditRegion";
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="*" element={<h1>Page not found</h1>} />
         <Route path="/about" element={<About></About>} />
+        <Route path="/regions/edit/:regionId" element={<EditRegion></EditRegion>} />
       </Routes>
       <Footer />
     </>
