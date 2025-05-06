@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const API_URL = "https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/";
+const API_URL = "https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities/";
 
 function HomePage() {
     const [regions, setRegions] = useState({});
@@ -34,14 +34,14 @@ function HomePage() {
         <div>
             <h1>Portugal Tourism</h1>
             <div className="city-cards">
-                {Object.entries(regions).map(([cityName]) => (
-                    <div key={cityName} className="city">
-                        <h2>{cityName}</h2>
+                {Object.entries(regions).map(([cityKey, cityData]) => (
+                    <div key={cityKey} className="city">
+                        <h2>{cityData["city-name"]}</h2>
                         <div className="buttons">
-                            <Link to={`/regions/${cityName}`} className="details-btn">More details</Link>
+                            <Link to={`/regions/${cityKey}`} className="details-btn">More details</Link>
                             <button
                                 className="delete-btn"
-                                onClick={() => handleDeleteCity(cityName)}
+                                onClick={() => handleDeleteCity(cityKey)}
                             >
                                 Delete
                             </button>

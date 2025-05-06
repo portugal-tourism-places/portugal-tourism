@@ -15,6 +15,9 @@ function EditRegion() {
  
 
     useEffect(()=>{
+        console.log("regio id.......");
+        console.log(regionId);
+        
         axios
         .get(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/${regionId}.json`)
         .then((response)=>{
