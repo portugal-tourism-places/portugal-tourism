@@ -6,17 +6,20 @@ import { Link } from "react-router-dom";
 function RegionDetails() {
   const [region, setRegion] = useState(null);
   const { regionId } = useParams();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/${regionId}.json`)
+      .get(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities/${regionId}`)
       .then((response) => {
         setRegion(response.data);
       })
-      .catch((e) =>
-        console.log("Error getting city details from the API...", e)
-      );
+      .catch((e) => {
+        console.log("Error getting city details from the API...", e);
+        setError("Failed to load region details. Please try again later.");
+      });
   }, [regionId]);
+
 
   if (region === null) {
     return <h3>Loading...</h3>;
