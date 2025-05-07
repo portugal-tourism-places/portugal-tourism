@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import RegionDetails from "./pages/RegionDetails";
 import About from "./pages/About";
 import EditRegion from "./pages/EditRegion"
+import CreateRegion from "./pages/CreateRegion";
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -41,6 +42,19 @@ function App() {
     return <h3>Loading...</h3>;
   }
 
+  const createRegion = (newRegionDetails)=>{
+    const regionIds= cities.map((cityObj)=>cityObj.id);
+    const maxId= Math.max(...regionIds);
+    const nextId= maxId +1;
+
+    const newRegion= {
+      ...newRegionDetails,
+      id: nextId
+    }
+
+    setCities([...cities, newRegion])
+  }
+
   return (
     <>
       <Navbar />
@@ -49,6 +63,7 @@ function App() {
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="/regions/edit/:regionId" element={<EditRegion />} />
         <Route path="/about" element={<About></About>} />
+        <Route path="/createRegion" element={<CreateRegion callBackToCreate={createRegion} />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footer />
