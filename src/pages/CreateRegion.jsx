@@ -25,8 +25,6 @@ function CreateRegion(props) {
             image: image,
         }
 
-        props.callBackToCreate(newItem);
-
         setCityName("");
         setHistory("");
         setFood([]);
@@ -37,6 +35,7 @@ function CreateRegion(props) {
         axios
             .post("https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities.json", newItem)
             .then(() => {
+                props.updateRegions();
                 navigate("/")
             })
             .catch((e) => console.log("Error:", e));
