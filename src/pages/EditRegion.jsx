@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function EditRegion() {
+function EditRegion(props) {
   const { regionId } = useParams();
   const navigate = useNavigate();
 
@@ -53,6 +53,7 @@ function EditRegion() {
     axios
       .put(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities/${regionId}.json`, updatedData)
       .then(() => {
+        props.updateRegions()
         navigate(`/regions/${regionId}`);
       })
       .catch((error) => {

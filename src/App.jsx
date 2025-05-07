@@ -15,35 +15,39 @@ import SearchBar from "./components/SearchBar";
 function App() {
   const [cities, setCities] = useState([]);
   const [error, setError] = useState(null);
-  const [filteredCities, setFilteredCIties] = useState([])
+  const [filteredCities, setFilteredCities] = useState([]);
 
   useEffect(() => {
+    updateRegions()
+  }, []);
+
+  const updateRegions = () => {
     axios
       .get("https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/.json")
       .then((response) => {
         const data = response.data?.cities;
-  
+
         if (data) {
-          
+
           const citiesArray = Object.entries(data).map(([id, cityData]) => {
             return {
               id,
               ...cityData
             };
           });
-  
+
           setCities(citiesArray);
-          setFilteredCIties(citiesArray); 
+          setFilteredCities(citiesArray);
         } else {
           setCities([]);
-          setFilteredCIties([]);
+          setFilteredCities([]);
         }
       })
       .catch((e) => {
         console.log("Error finding cities", e);
         setError("Failed to load cities. Please try again later.");
       });
-  }, []);
+  }
 
   if (error) {
     return <h3>{error}</h3>;
@@ -53,37 +57,37 @@ function App() {
     return <h3>Loading...</h3>;
   }
 
-  const createRegion = (newRegionDetails) => {
-    const regionIds = cities.map((cityObj) => cityObj.id);
-    const maxId = Math.max(...regionIds);
-    const nextId = maxId + 1;
-
-    const newRegion = {
-      ...newRegionDetails,
-      id: nextId
-    }
-
-    setCities([...cities, newRegion])
-  }
 
   const handleSearch = (input) => {
     const filtered = cities.filter((city) =>
       city["city-name"].toLowerCase().includes(input.toLowerCase())
     );
-    setFilteredCIties(filtered);
+    setFilteredCities(filtered);
   };
 
+  const handleDeleteCity = (cityId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this city?");
+    if (!confirmed) return;
+
+    axios
+      .delete(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities/${cityId}.json`)
+      .then(() => {
+        setCities((prev) => prev.filter(city => city.id !== cityId));
+        setFilteredCities((prev) => prev.filter(city => city.id !== cityId));
+      })
+      .catch((err) => console.error("Error deleting city", err));
+  };
 
   return (
     <>
       <Navbar />
       <SearchBar onSearch={handleSearch} />
       <Routes>
-        <Route path="/" element={<HomePage regions={filteredCities} />} />
+        <Route path="/" element={<HomePage regions={filteredCities} onDeleteCity={handleDeleteCity} />} />
         <Route path="/regions/:regionId" element={<RegionDetails />} />
-        <Route path="/regions/edit/:regionId" element={<EditRegion />} />
+        <Route path="/regions/edit/:regionId" element={<EditRegion updateRegions={updateRegions} />} />
         <Route path="/about" element={<About></About>} />
-        <Route path="/createRegion" element={<CreateRegion callBackToCreate={createRegion} />} />
+        <Route path="/createRegion" element={<CreateRegion updateRegions={updateRegions} />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footer />
