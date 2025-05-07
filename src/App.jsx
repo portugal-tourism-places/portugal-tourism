@@ -10,22 +10,33 @@ import RegionDetails from "./pages/RegionDetails";
 import About from "./pages/About";
 import EditRegion from "./pages/EditRegion"
 import CreateRegion from "./pages/CreateRegion";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [cities, setCities] = useState([]);
   const [error, setError] = useState(null);
+  const [filteredCities, setFilteredCIties] = useState([])
 
   useEffect(() => {
     axios
       .get("https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/.json")
       .then((response) => {
-        const data = response.data;
-
+        const data = response.data?.cities;
+  
         if (data) {
-          const cityNames = Object.keys(data);
-          setCities(cityNames);
+          
+          const citiesArray = Object.entries(data).map(([id, cityData]) => {
+            return {
+              id,
+              ...cityData
+            };
+          });
+  
+          setCities(citiesArray);
+          setFilteredCIties(citiesArray); 
         } else {
           setCities([]);
+          setFilteredCIties([]);
         }
       })
       .catch((e) => {
@@ -42,12 +53,12 @@ function App() {
     return <h3>Loading...</h3>;
   }
 
-  const createRegion = (newRegionDetails)=>{
-    const regionIds= cities.map((cityObj)=>cityObj.id);
-    const maxId= Math.max(...regionIds);
-    const nextId= maxId +1;
+  const createRegion = (newRegionDetails) => {
+    const regionIds = cities.map((cityObj) => cityObj.id);
+    const maxId = Math.max(...regionIds);
+    const nextId = maxId + 1;
 
-    const newRegion= {
+    const newRegion = {
       ...newRegionDetails,
       id: nextId
     }
@@ -55,11 +66,20 @@ function App() {
     setCities([...cities, newRegion])
   }
 
+  const handleSearch = (input) => {
+    const filtered = cities.filter((city) =>
+      city["city-name"].toLowerCase().includes(input.toLowerCase())
+    );
+    setFilteredCIties(filtered);
+  };
+
+
   return (
     <>
       <Navbar />
+      <SearchBar onSearch={handleSearch} />
       <Routes>
-        <Route path="/" element={<HomePage regions={cities} />} />
+        <Route path="/" element={<HomePage regions={filteredCities} />} />
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="/regions/edit/:regionId" element={<EditRegion />} />
         <Route path="/about" element={<About></About>} />
