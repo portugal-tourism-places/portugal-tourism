@@ -6,9 +6,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 
-import RegionDetails from "./pages/RegionsDetails";
+import RegionDetails from "./pages/RegionDetails";
 import About from "./pages/About";
-import EditRegion from "./pages/EditRegion";
+import EditRegion from "./pages/EditRegion"
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -47,9 +47,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage regions={cities} />} />
         <Route path="/regions/:regionId" element={<RegionDetails />} />
-        <Route path="*" element={<h1>Page not found</h1>} />
-        <Route path="/about" element={<About></About>} />
         <Route path="/regions/edit/:regionId" element={<EditRegion />} />
+        <Route path="/about" element={<About></About>} />
+        <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
       <Footer />
     </>
