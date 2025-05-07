@@ -79,10 +79,16 @@ function EditRegion() {
     return <p>Loading...</p>;
   }
 
+
   const handleRemoveFood = (index) => {
     const updatedFood = [...food];
     updatedFood.splice(index, 1);
     setFood(updatedFood);
+  };
+
+  const handleAddFood = () => {
+    const newItem = { description: "", photo: "" };
+    setFood([...food, newItem]);
   };
 
   const handleRemovePlaces = (index) => {
@@ -91,10 +97,20 @@ function EditRegion() {
     setPlacesToVisit(updatedPlaces);
   };
 
+  const handleAddPlaces = () => {
+    const newItem = { name: "", photo: "" };
+    setPlacesToVisit([...placesToVisit, newItem]);
+  };
+
   const handleRemoveRestaurants = (index) => {
     const updatedRestaurants = [...restaurants];
     updatedRestaurants.splice(index, 1);
     setRestaurants(updatedRestaurants);
+  };
+
+  const handleAddRestaurants = () => {
+    const newItem = { name: "", link: "", rating: "" };
+    setRestaurants([...restaurants, newItem]);
   };
 
   return (
@@ -107,6 +123,7 @@ function EditRegion() {
           <input
             type="text"
             name="city-name"
+            placeholder="City Name"
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
           />
@@ -114,9 +131,10 @@ function EditRegion() {
 
         <label>
           History:
-          <textarea
+          <input
             name="history"
-            placeholder="Edit history"
+            type="text"
+            placeholder="history"
             value={history}
             onChange={(e) => setHistory(e.target.value)}
           />
@@ -141,6 +159,7 @@ function EditRegion() {
               {food.length > 1 && (<button type="button" onClick={() => handleRemoveFood(index)}>-</button>)}
             </div>
           ))}
+          <button type="button" onClick={handleAddFood}>+</button>
         </div>
 
         <div>
@@ -162,6 +181,7 @@ function EditRegion() {
               {placesToVisit.length > 1 && (<button type="button" onClick={() => handleRemovePlaces(index)}>-</button>)}
             </div>
           ))}
+          <button type="button" onClick={handleAddPlaces}>+</button>
         </div>
 
         <div>
@@ -176,19 +196,22 @@ function EditRegion() {
               />
               <input
                 type="text"
-                placeholder="Restaurant link"
+                placeholder="Tripadvisor link"
                 value={restaurant.link}
                 onChange={(e) => handleRestaurantsChange(index, "link", e.target.value)}
               />
               <input
                 type="number"
                 placeholder="Rating"
+                min="1"
+                max="10"
                 value={restaurant.rating}
                 onChange={(e) => handleRestaurantsChange(index, "rating", e.target.value)}
               />
               {restaurants.length > 1 && (<button type="button" onClick={() => handleRemoveRestaurants(index)}>-</button>)}
             </div>
           ))}
+          <button type="button" onClick={handleAddRestaurants}>+</button>
         </div>
 
         <button onClick={handleSubmit} type="submit">Update City</button>
