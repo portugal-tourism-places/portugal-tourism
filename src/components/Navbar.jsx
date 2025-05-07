@@ -9,6 +9,9 @@ function Navbar () {
             <NavLink to="/about">
                 <button> About us </button>
             </NavLink>
+            <NavLink to="/createRegion">
+                <button> Create new city </button>
+            </NavLink>
         </nav>
     );
 }
