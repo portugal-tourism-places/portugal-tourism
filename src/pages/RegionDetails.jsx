@@ -51,6 +51,7 @@ function RegionDetails() {
       ))}
 
       <h2>Restaurants</h2>
+      {console.log(cityData.restaurants)}
       {cityData.restaurants.map((restaurant, index) => (
         <div key={index}>
           <a href={restaurant.link} target="_blank" rel="noopener noreferrer">
