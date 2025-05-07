@@ -22,18 +22,18 @@ function App() {
       .get("https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/.json")
       .then((response) => {
         const data = response.data?.cities;
-  
+
         if (data) {
-          
+
           const citiesArray = Object.entries(data).map(([id, cityData]) => {
             return {
               id,
               ...cityData
             };
           });
-  
+
           setCities(citiesArray);
-          setFilteredCIties(citiesArray); 
+          setFilteredCIties(citiesArray);
         } else {
           setCities([]);
           setFilteredCIties([]);
@@ -73,13 +73,25 @@ function App() {
     setFilteredCIties(filtered);
   };
 
+  const handleDeleteCity = (cityId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this city?");
+    if (!confirmed) return;
+
+    axios
+      .delete(`https://portugal-tourism-places-default-rtdb.europe-west1.firebasedatabase.app/cities/${cityId}.json`)
+      .then(() => {
+        setCities((prev) => prev.filter(city => city.id !== cityId));
+        setFilteredCIties((prev) => prev.filter(city => city.id !== cityId));
+      })
+      .catch((err) => console.error("Error deleting city", err));
+  };
 
   return (
     <>
       <Navbar />
       <SearchBar onSearch={handleSearch} />
       <Routes>
-        <Route path="/" element={<HomePage regions={filteredCities} />} />
+        <Route path="/" element={<HomePage regions={filteredCities} onDeleteCity={handleDeleteCity} />} />
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="/regions/edit/:regionId" element={<EditRegion />} />
         <Route path="/about" element={<About></About>} />

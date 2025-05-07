@@ -6,9 +6,9 @@ import axios from "axios"
 function CreateRegion(props) {
     const [cityName, setCityName] = useState("")
     const [history, setHistory] = useState("")
-    const [food, setFood] = useState([])
-    const [restaurants, setRestaurants] = useState([])
-    const [placesToVisit, setPlacesToVisit] = useState([])
+    const [food, setFood] = useState([{ description: "", photo: "" }]);
+    const [restaurants, setRestaurants] = useState([{ name: "", link: "", rating: "" }]);
+    const [placesToVisit, setPlacesToVisit] = useState([{ name: "", photo: "" }]);
     const [image, setImage] = useState("")
 
     const navigate = useNavigate();
@@ -30,8 +30,8 @@ function CreateRegion(props) {
         setCityName("");
         setHistory("");
         setFood([]);
-         setRestaurants([]);
-         setPlacesToVisit([]);
+        setRestaurants([]);
+        setPlacesToVisit([]);
         setImage("");
 
         axios
@@ -41,6 +41,55 @@ function CreateRegion(props) {
             })
             .catch((e) => console.log("Error:", e));
     }
+
+    const handleRestaurantChange = (index, field, value) => {
+        const updated = [...restaurants];
+        updated[index][field] = value;
+        setRestaurants(updated);
+    };
+
+    const addRestaurant = () => {
+        setRestaurants([...restaurants, { name: "", link: "", rating: "" }]);
+    };
+
+    const removeRestaurant = (index) => {
+        const updated = [...restaurants];
+        updated.splice(index, 1);
+        setRestaurants(updated);
+    };
+
+    const handleFoodChange = (index, field, value) => {
+        const updated = [...food];
+        updated[index][field] = value;
+        setFood(updated);
+    };
+
+    const addFood = () => {
+        setFood([...food, { description: "", photo: "" }]);
+    };
+
+    const removeFood = (index) => {
+        const updated = [...food];
+        updated.splice(index, 1);
+        setFood(updated);
+    };
+
+    const handlePlaceChange = (index, field, value) => {
+        const updated = [...placesToVisit];
+        updated[index][field] = value;
+        setPlacesToVisit(updated);
+    };
+
+    const addPlace = () => {
+        setPlacesToVisit([...placesToVisit, { name: "", photo: "" }]);
+    };
+
+    const removePlace = (index) => {
+        const updated = [...placesToVisit];
+        updated.splice(index, 1);
+        setPlacesToVisit(updated);
+    };
+
 
     return (
         <div>
@@ -71,33 +120,77 @@ function CreateRegion(props) {
                 </label>
                 <label className="create">
                     Food:
-                    Food:
-                    <textarea
-                        name="Food"
-                        placeholder="Enter the types of food (comma-separated)"
-                        value={food.join(", ")} // Convert array to a comma-separated string
-                        onChange={(e) => setFood(e.target.value.split(",").map(item => item.trim()))} // Convert string back to array
-                    />
+                    {food.map((item, index) => (
+                        <div key={index} className="food-entry">
+                            <input
+                                type="text"
+                                placeholder="Food description"
+                                value={item.description}
+                                onChange={(e) => handleFoodChange(index, "description", e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={item.photo}
+                                onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
+                            />
+                            {food.length > 1 && (<button type="button" onClick={() => removeFood(index)}>-</button>)}
+                        </div>
+                    ))}
+                    <button type="button" onClick={addFood}>+</button>
                 </label>
 
                 <label className="create">
                     Restaurants:
-                    <textarea
-                        name="Restaurants"
-                        placeholder="Enter restaurants (comma-separated)"
-                        value={restaurants.join(", ")}
-                        onChange={(e) => setRestaurants(e.target.value.split(",").map(item => item.trim()))}
-                    />
+                    {restaurants.map((restaurant, index) => (
+                        <div key={index} className="restaurant-entry">
+                            <input
+                                type="text"
+                                placeholder="Restaurant name"
+                                value={restaurant.name}
+                                onChange={(e) => handleRestaurantChange(index, "name", e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Restaurant link"
+                                value={restaurant.link}
+                                onChange={(e) => handleRestaurantChange(index, "link", e.target.value)}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Rating (1-10)"
+                                min="1"
+                                max="10"
+                                value={restaurant.rating}
+                                onChange={(e) => handleRestaurantChange(index, "rating", e.target.value)}
+                            />
+                            {restaurants.length > 1 && (<button type="button" onClick={() => removeRestaurant(index)}>-</button>)}
+                        </div>
+                    ))}
+                    <button type="button" onClick={addRestaurant}>+</button>
                 </label>
 
                 <label className="create">
-                    Places to visit:
-                    <textarea
-                        name="Places to visit"
-                        placeholder="Enter places to visit (comma-separated)"
-                        value={placesToVisit.join(", ")}
-                        onChange={(e) => setPlacesToVisit(e.target.value.split(",").map(item => item.trim()))}
-                    />
+                    Places to Visit:
+                    {placesToVisit.map((place, index) => (
+                        <div key={index} className="place-entry">
+                            <input
+                                type="text"
+                                placeholder="Place name"
+                                value={place.name}
+                                onChange={(e) => handlePlaceChange(index, "name", e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={place.photo}
+                                onChange={(e) => handlePlaceChange(index, "photo", e.target.value)}
+                            />
+                            {placesToVisit.length > 1 && (<button type="button" onClick={() => removePlace(index)}>-</button>)}
+                        </div>
+                    ))}
+                    <button type="button" onClick={addPlace}>+</button>
+
                 </label>
 
                 <label className="create">

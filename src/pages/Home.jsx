@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 
-function HomePage({ regions }) {
+function HomePage({ regions, onDeleteCity }) {
     const handleDeleteCity = (cityId) => {
-        const confirmed = window.confirm(`Are you sure you want to delete this city?`);
-        if (!confirmed) return;
-        alert("Delete functionality should be moved to App.jsx to affect the state.");
+        onDeleteCity(cityId);
     };
 
     return (
