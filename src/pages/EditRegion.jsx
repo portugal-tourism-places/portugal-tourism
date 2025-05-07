@@ -9,6 +9,7 @@ function EditRegion() {
   const [cityData, setCityData] = useState(null);
 
   const [cityName, setCityName] = useState("");
+  const [cityImage, setCityImage] = useState("");
   const [history, setHistory] = useState("");
   const [food, setFood] = useState([]);
   const [placesToVisit, setPlacesToVisit] = useState([]);
@@ -22,6 +23,7 @@ function EditRegion() {
         .then((response) => {
           if (response.data) {
             setCityData(response.data);
+            setCityImage(response.data.image || "");
             setHistory(response.data.history || "");
             setCityName(response.data["city-name"] || "");
             setFood(response.data.food || []);
@@ -40,6 +42,7 @@ function EditRegion() {
 
     const updatedData = {
       ...cityData,
+      image: cityImage,
       "city-name": cityName,
       history,
       food,
@@ -126,6 +129,17 @@ function EditRegion() {
             placeholder="City Name"
             value={cityName}
             onChange={(e) => setCityName(e.target.value)}
+          />
+        </label>
+
+        <label>
+          City Image:
+          <input
+            type="text"
+            name="image"
+            placeholder="City image URL"
+            value={cityImage}
+            onChange={(e) => setCityImage(e.target.value)}
           />
         </label>
 
