@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+  }
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -5,17 +15,16 @@ h1 {
     margin-bottom: 2rem;
 }
 
-.homePage{
+.homePage {
     background-image: url(./Images/image-asset.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 95vw;
+    width: 99vw;
     height: 30vh;
     align-items: center;
     text-align: center;
-    margin: 1rem
-   
+    margin-bottom: 1rem;
 }
 
 
@@ -47,8 +56,6 @@ h1 {
     transform: scale(1.05);
 }
 
-
-
 .region img {
     width: 400px;
     height: 280px;
@@ -79,7 +86,8 @@ h1 {
 }
 
 .city:hover {
-    background-color: rgba(0, 0, 0, 0.3);  /* optional, if you want a hover effect */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* optional, if you want a hover effect */
 }
 
 @keyframes slideShow {
@@ -142,13 +150,6 @@ h1 {
     width: 100px;
 }
 
-.Navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #1e3a8a;
-    margin: 1rem;
-}
-
 .Navbar button {
     background-color: white;
     color: #1e3a8a;
@@ -165,6 +166,14 @@ h1 {
     margin-right: 25px;
 }
 
+.navbar-items {
+    width: 99vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1e3a8a;
+    padding: 0.5rem;
+}
+
 .create {
     flex: 1;
     display: flex;
@@ -174,6 +183,163 @@ h1 {
     width: 98vw;
 }
 
-.searchBar{
+.searchBar {
     margin: 1rem;
+}
+
+.region-details {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.region-details-img {
+    width: 99vw;
+    height: 300px;
+    object-fit: cover;
+    object-position: 90% 49%;
+}
+
+.region-details h1 {
+    color: #000000;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.region-details-history {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 10px;
+    width: 50vw;
+    border: 3px solid black;
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.region-details-history h2 {
+    color: #ff8800;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.7rem;
+}
+
+.region-details-history p {
+    color: #696969;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.region-details-food {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 1.5rem;
+    gap: 10px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    width: 90vw;
+    margin-top: 20px;
+}
+
+.region-details-food h2 {
+    color: #ff8800;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.7rem;
+}
+
+.region-details-food h3 {
+    color: #696969;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+}
+
+.region-details-food-recipes {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 25vw;
+    padding: 1rem;
+    gap: 10px;
+}
+
+.region-details-food-recipes img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.region-details-food-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 40px;
+}
+
+.region-details-visit {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 1.5rem;
+    gap: 10px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    width: 90vw;
+    margin-top: 20px;
+}
+
+.region-details-visit h2 {
+    color: #ff8800;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.7rem;
+}
+
+.region-details-visit h3 {
+    color: #696969;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+}
+
+.region-details-visit-places {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 25vw;
+    padding: 1rem;
+    gap: 10px;
+}
+
+.region-details-visit-places img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.region-details-visit-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 40px;
+}
+
+.edit-btn {
+    background-color: #fffb00;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px;
+    width: 120px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.edit-btn-div {
+    margin-top: 25px;
 }
