@@ -118,6 +118,7 @@ function EditRegion() {
                 value={item.photo}
                 onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
               />
+            <button type="button">-</button>
             </div>
           ))}
         </div>
@@ -168,7 +169,7 @@ function EditRegion() {
           ))}
         </div>
 
-        <button onClick={handleSubmit}>Update City</button>
+        <button onClick={handleSubmit} type="submit">Update City</button>
 
       </form>
     </div>
