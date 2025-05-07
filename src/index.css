@@ -177,3 +177,21 @@ h1 {
 .searchBar{
     margin: 1rem;
 }
+
+.footer {
+    background-color:  #1e3a8a;
+    padding: 1rem;
+    display: flex;
+    justify-content: center; 
+    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+    display: flex;
+    margin: 1rem;
+    color: white;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    color: white;
+  }
