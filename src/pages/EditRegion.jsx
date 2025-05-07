@@ -6,12 +6,14 @@ function EditRegion() {
   const { regionId } = useParams();
   const navigate = useNavigate();
 
-  const [cityData, setCityData] = useState(null); 
-  const [history, setHistory] = useState("");
+  const [cityData, setCityData] = useState(null);
+
   const [cityName, setCityName] = useState("");
+  const [history, setHistory] = useState("");
   const [food, setFood] = useState([]);
   const [placesToVisit, setPlacesToVisit] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
+
 
   useEffect(() => {
     if (regionId) {
@@ -28,7 +30,7 @@ function EditRegion() {
           }
         })
         .catch((error) => {
-            console.log("Error loading data", error);
+          console.log("Error loading data", error);
         });
     }
   }, [regionId]);
@@ -42,7 +44,7 @@ function EditRegion() {
       history,
       food,
       "places-to-visit": placesToVisit,
-      restaurants,
+      restaurants: restaurants,
     };
 
     axios
@@ -76,6 +78,24 @@ function EditRegion() {
   if (!cityData) {
     return <p>Loading...</p>;
   }
+
+  const handleRemoveFood = (index) => {
+    const updatedFood = [...food];
+    updatedFood.splice(index, 1);
+    setFood(updatedFood);
+  };
+
+  const handleRemovePlaces = (index) => {
+    const updatedPlaces = [...placesToVisit];
+    updatedPlaces.splice(index, 1);
+    setPlacesToVisit(updatedPlaces);
+  };
+
+  const handleRemoveRestaurants = (index) => {
+    const updatedRestaurants = [...restaurants];
+    updatedRestaurants.splice(index, 1);
+    setRestaurants(updatedRestaurants);
+  };
 
   return (
     <div>
@@ -118,7 +138,7 @@ function EditRegion() {
                 value={item.photo}
                 onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
               />
-            <button type="button">-</button>
+              {food.length > 1 && (<button type="button" onClick={() => handleRemoveFood(index)}>-</button>)}
             </div>
           ))}
         </div>
@@ -139,6 +159,7 @@ function EditRegion() {
                 value={place.photo}
                 onChange={(e) => handlePlacesToVisitChange(index, "photo", e.target.value)}
               />
+              {placesToVisit.length > 1 && (<button type="button" onClick={() => handleRemovePlaces(index)}>-</button>)}
             </div>
           ))}
         </div>
@@ -165,6 +186,7 @@ function EditRegion() {
                 value={restaurant.rating}
                 onChange={(e) => handleRestaurantsChange(index, "rating", e.target.value)}
               />
+              {restaurants.length > 1 && (<button type="button" onClick={() => handleRemoveRestaurants(index)}>-</button>)}
             </div>
           ))}
         </div>
