@@ -1,9 +1,23 @@
 h1 {
     text-align: center;
     font-size: 2.5rem;
-    color: #1e3a8a;
+    color: white;
     margin-bottom: 2rem;
 }
+
+.homePage{
+    background-image: url(./Images/image-asset.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 95vw;
+    height: 30vh;
+    align-items: center;
+    text-align: center;
+    margin: 1rem
+   
+}
+
 
 .region {
     display: flex;
@@ -33,6 +47,8 @@ h1 {
     transform: scale(1.05);
 }
 
+
+
 .region img {
     width: 400px;
     height: 280px;
@@ -46,11 +62,14 @@ h1 {
 }
 
 .city {
-    width: 350px;
+    width: 200px;
+    height: 80px;
     text-align: center;
     border: 1px solid #000000;
     margin: 1rem;
-    background: linear-gradient(to bottom, #e0f2fe, #ffffff);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     min-height: 50vh;
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
@@ -60,15 +79,32 @@ h1 {
 }
 
 .city:hover {
-    background-color: #bfdbfe;
-    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 0.3);  /* optional, if you want a hover effect */
+}
+
+@keyframes slideShow {
+    0% {
+        background-image: url(./Images/IBYxsMeJwaQBjoJfQVEaTQsNxb3tGT90MRW9MUgL.jpg);
+    }
+
+    33% {
+        background-image: url(./Images/istockphoto-472119842-612x612.jpg);
+    }
+
+    66% {
+        background-image: url(./Images/porto-main.avif);
+    }
+
+    100% {
+        background-image: url(./Images/image-asset.jpeg);
+    }
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     height: 300px;
 }
 
@@ -129,12 +165,15 @@ h1 {
     margin-right: 25px;
 }
 
-.create{
+.create {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 10px;
     width: 98vw;
-  }
-  
+}
+
+.searchBar{
+    margin: 1rem;
+}

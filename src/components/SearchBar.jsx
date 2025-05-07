@@ -12,7 +12,7 @@ function SearchBar({onSearch}){
     }
 
     return (
-        <div>
+        <div className="searchBar">
             <input 
             type="text"
             placeholder="Search here 🔎"

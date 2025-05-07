@@ -8,12 +8,21 @@ function HomePage({ regions }) {
     };
 
     return (
-        <div>
+        <div> 
+            <article className="homePage">
             <h1>Portugal Tourism</h1>
+            </article>
             <div className="city-cards">
                 {regions.length > 0 ? (
                     regions.map((city) => (
-                        <div key={city.id} className="city">
+                        <div key={city.id} className="city"
+                        style={{
+                            backgroundImage: `url(${city.image})`,
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "center"
+                        }}
+                        >
                             <h2>{city["city-name"]}</h2>
                             <div className="buttons">
                                 <Link to={`/regions/${city.id}`} className="details-btn">More details</Link>
