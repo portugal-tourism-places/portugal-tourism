@@ -8,6 +8,10 @@ function EditRegion() {
 
   const [cityData, setCityData] = useState(null); 
   const [history, setHistory] = useState("");
+  const [cityName, setCityName] = useState("");
+  const [food, setFood] = useState([]);
+  const [placesToVisit, setPlacesToVisit] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     if (regionId) {
@@ -17,6 +21,10 @@ function EditRegion() {
           if (response.data) {
             setCityData(response.data);
             setHistory(response.data.history || "");
+            setCityName(response.data["city-name"] || "");
+            setFood(response.data.food || []);
+            setPlacesToVisit(response.data["places-to-visit"] || []);
+            setRestaurants(response.data.restaurants || []);
           }
         })
         .catch((error) => {
@@ -30,7 +38,11 @@ function EditRegion() {
 
     const updatedData = {
       ...cityData,
+      "city-name": cityName,
       history,
+      food,
+      "places-to-visit": placesToVisit,
+      restaurants,
     };
 
     axios
@@ -43,15 +55,43 @@ function EditRegion() {
       });
   };
 
+  const handleFoodChange = (index, field, value) => {
+    const updatedFood = [...food];
+    updatedFood[index] = { ...updatedFood[index], [field]: value };
+    setFood(updatedFood);
+  };
+
+  const handlePlacesToVisitChange = (index, field, value) => {
+    const updatedPlaces = [...placesToVisit];
+    updatedPlaces[index] = { ...updatedPlaces[index], [field]: value };
+    setPlacesToVisit(updatedPlaces);
+  };
+
+  const handleRestaurantsChange = (index, field, value) => {
+    const updatedRestaurants = [...restaurants];
+    updatedRestaurants[index] = { ...updatedRestaurants[index], [field]: value };
+    setRestaurants(updatedRestaurants);
+  };
+
   if (!cityData) {
     return <p>Loading...</p>;
   }
 
   return (
     <div>
-      <h3>Edit History for Region: {regionId}</h3>
+      <h3>Edit</h3>
 
-      <form onSubmit={handleSubmit}>
+      <form >
+        <label>
+          City Name:
+          <input
+            type="text"
+            name="city-name"
+            value={cityName}
+            onChange={(e) => setCityName(e.target.value)}
+          />
+        </label>
+
         <label>
           History:
           <textarea
@@ -62,12 +102,81 @@ function EditRegion() {
           />
         </label>
 
-        <button type="submit">Update History</button>
+        <div>
+          <h4>Edit Food</h4>
+          {food.map((item, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                placeholder="Food description"
+                value={item.description}
+                onChange={(e) => handleFoodChange(index, "description", e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Food photo URL"
+                value={item.photo}
+                onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
+              />
+            <button type="button">-</button>
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <h4>Edit Places to Visit</h4>
+          {placesToVisit.map((place, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                placeholder="Place name"
+                value={place.name}
+                onChange={(e) => handlePlacesToVisitChange(index, "name", e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Place photo URL"
+                value={place.photo}
+                onChange={(e) => handlePlacesToVisitChange(index, "photo", e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div>
+          <h4>Edit Restaurants</h4>
+          {restaurants.map((restaurant, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                placeholder="Restaurant name"
+                value={restaurant.name}
+                onChange={(e) => handleRestaurantsChange(index, "name", e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Restaurant link"
+                value={restaurant.link}
+                onChange={(e) => handleRestaurantsChange(index, "link", e.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Rating"
+                value={restaurant.rating}
+                onChange={(e) => handleRestaurantsChange(index, "rating", e.target.value)}
+              />
+            </div>
+          ))}
+        </div>
+
+        <button onClick={handleSubmit} type="submit">Update City</button>
+
       </form>
     </div>
   );
 }
 
 export default EditRegion;
+
 
 

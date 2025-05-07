@@ -29,7 +29,7 @@ function RegionDetails() {
   return (
     <div>
       <h1>{cityData["city-name"]}</h1>
-      <img src={cityData.photo} />
+      <img src={cityData.image} />
 
       <h2>History</h2>
       <p>{cityData.history}</p>
