@@ -62,8 +62,8 @@ function RegionDetails() {
         </div>
       </div>
 
-      <h2>Restaurants</h2>
-      {console.log(cityData.restaurants)}
+      <h2>Restaurants 🍽️</h2>
+    <div className="region-details-restaurants">
       {
         cityData.restaurants.map((restaurant, index) => (
           <div key={index}>
@@ -74,6 +74,7 @@ function RegionDetails() {
           </div>
         ))
       }
+      </div>
       <div className="edit-btn-div">
         <Link to={`/regions/edit/${regionId}`} className="edit-btn">Edit Region</Link>
       </div>
