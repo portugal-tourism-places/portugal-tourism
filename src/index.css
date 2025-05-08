@@ -4,10 +4,7 @@
     box-sizing: border-box;
 }
 
-
-
-html,
-body {
+html, body {
     overflow-x: hidden;
 }
 
@@ -16,71 +13,6 @@ h1 {
     font-size: 2.5rem;
     color: white;
     margin-bottom: 2rem;
-}
-
-h2 {
-    color: #ff8800;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1.7rem;
-}
-
-h3 {
-    color: #696969;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1.1rem;
-}
-
-
-nav {
-    width: 100vw;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #1e3a8a;
-    padding: 0.5rem;
-    flex-wrap: wrap;
-
-}
-
-nav button {
-    background-color: white;
-    color: #1e3a8a;
-    padding: 8px 40px;
-    border-radius: 8px;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: background-color 0.2s;
-    text-decoration: none;
-    margin: 10px 100px 10px 100px;
-
-}
-
-nav button:hover {
-    background-color: #bfdbfe;
-}
-
-
-.about-section {
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 60px 20px;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.about-section h1 {
-    font-size: 2rem;
-    margin-bottom: 25px;
-    font-weight: 700;
-    color: #1e3a8a;
-}
-
-.about-section h2 {
-    font-size: 2.8rem;
-    margin-bottom: 25px;
-    font-weight: 700;
-    color: #1a1a1a;
 }
 
 .homePage {
@@ -207,8 +139,37 @@ nav button:hover {
     width: 70px;
 }
 
-.delete-btn:hover {
-    background-color: #bfdbfe;
+.Navbar button {
+    background-color: white;
+    color: #1e3a8a;
+    padding: 8px 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    margin: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.navbar-items {
+    width: 99vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1e3a8a;
+    padding: 0.5rem;
+}
+
+.home-btn {
+    text-decoration: none;
+}
+
+.home-btn-2 {
+    display: flex;
+    align-items: center;
 }
 
 .create {
@@ -382,6 +343,159 @@ nav button:hover {
 
 .edit-btn-div {
     margin-top: 25px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-family: 'Segoe UI', sans-serif;
+    ;
+}
+
+.edit-form h4 {
+    text-decoration: underline;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.edit-form-cityName,
+.edit-form-cityImage,
+.edit-form-history {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.city-name,
+.city-photo {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 500px;
+}
+
+.city-history {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 500px;
+    height: 100px;
+    resize: none;
+    overflow-wrap: break-word;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.edit-form-food,
+.edit-form-places,
+.edit-form-restaurants {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.city-food,
+.city-places,
+.city-restaurants {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.city-food-name,
+.city-food-photo,
+.city-places-name,
+.city-places-photo,
+.city-restaurants-name,
+.city-restaurants-link,
+.city-restaurants-rating {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.remove-food-btn,
+.remove-places-btn,
+.remove-restaurants-btn {
+    padding: 5px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    width: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-food-btn,
+.add-places-btn,
+.add-restaurants-btn {
+    padding: 5px;
+    background-color: #007c00;
+    color: white;
+    border: none;
+    width: 90px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.update-city-btn {
+    background-color: #b65303;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+.update-city-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.create-city-btn {
+    background-color: #2403b6;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    margin: 10px;
+    width: 140px;
+    height: 50px;
+}
+
+.create-city-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.create-city-title {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 30px;
 }
 
 .edit-btn:hover {

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 function HomePage({ regions, onDeleteCity }) {
     const handleDeleteCity = (cityId) => {
@@ -6,20 +7,20 @@ function HomePage({ regions, onDeleteCity }) {
     };
 
     return (
-        <div> 
+        <div>
             <article className="homePage">
-            <h1>Portugal Tourism</h1>
+                <h1>Portugal Tourism</h1>
             </article>
             <div className="city-cards">
                 {regions.length > 0 ? (
                     regions.map((city) => (
                         <div key={city.id} className="city"
-                        style={{
-                            backgroundImage: `url(${city.image})`,
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center"
-                        }}
+                            style={{
+                                backgroundImage: `url(${city.image})`,
+                                backgroundSize: "cover",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center"
+                            }}
                         >
                             <h2>{city["city-name"]}</h2>
                             <div className="buttons">

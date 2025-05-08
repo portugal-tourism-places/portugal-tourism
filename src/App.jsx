@@ -83,7 +83,7 @@ function App() {
       <Navbar />
       <SearchBar onSearch={handleSearch} />
       <Routes>
-        <Route path="/" element={<HomePage regions={filteredCities} onDeleteCity={handleDeleteCity} />} />
+        <Route path="/" element={<HomePage regions={filteredCities} onDeleteCity={handleDeleteCity}/>} />
         <Route path="/regions/:regionId" element={<RegionDetails />} />
         <Route path="/regions/edit/:regionId" element={<EditRegion updateRegions={updateRegions} />} />
         <Route path="/about" element={<About></About>} />

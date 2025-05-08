@@ -92,120 +92,132 @@ function CreateRegion(props) {
 
     return (
         <div>
+            <h3 className="create-city-title"> Create new city </h3>
+            <div className="edit-form">
+                <form onSubmit={handleSubmit}>
+                    <div className="edit-form-cityName">
+                        <h4>Name 🌎</h4>
+                        <input
+                            className="city-name"
+                            type="text"
+                            name="City name"
+                            placeholder="enter city name"
+                            value={cityName}
+                            onChange={(e) => { setCityName(e.target.value) }}
+                        />
+                    </div>
 
-            <h3> Create new city </h3>
+                    <div className="edit-form-cityImage">
+                        <h4>Photo 📸</h4>
+                        <input
+                            className="city-photo"
+                            type="text"
+                            name="image"
+                            placeholder="enter image URL"
+                            value={image}
+                            onChange={(e) => { setImage(e.target.value) }}
+                        />
+                    </div>
 
-            <form onSubmit={handleSubmit}>
-                <label className="create">
-                    City Name:
-                    <input
-                        type="text"
-                        name="City name"
-                        placeholder="enter city name"
-                        value={cityName}
-                        onChange={(e) => { setCityName(e.target.value) }}
-                    />
-                </label>
 
-                <label className="create">
-                    History:
-                    <input
-                        type="text"
-                        name="History"
-                        placeholder="enter history"
-                        value={history}
-                        onChange={(e) => { setHistory(e.target.value) }}
-                    />
-                </label>
-                <label className="create">
-                    Food:
-                    {food.map((item, index) => (
-                        <div key={index} className="food-entry">
-                            <input
-                                type="text"
-                                placeholder="Food description"
-                                value={item.description}
-                                onChange={(e) => handleFoodChange(index, "description", e.target.value)}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Image URL"
-                                value={item.photo}
-                                onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
-                            />
-                            {food.length > 1 && (<button type="button" onClick={() => removeFood(index)}>-</button>)}
-                        </div>
-                    ))}
-                    <button type="button" onClick={addFood}>+</button>
-                </label>
+                    <div className="edit-form-history">
+                        <h4>History 📖</h4>
+                        <textarea
+                            className="city-history"
+                            type="text"
+                            name="History"
+                            placeholder="enter history"
+                            value={history}
+                            onChange={(e) => { setHistory(e.target.value) }}
+                        />
+                    </div>
 
-                <label className="create">
-                    Restaurants:
-                    {restaurants.map((restaurant, index) => (
-                        <div key={index} className="restaurant-entry">
-                            <input
-                                type="text"
-                                placeholder="Restaurant name"
-                                value={restaurant.name}
-                                onChange={(e) => handleRestaurantChange(index, "name", e.target.value)}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Restaurant link"
-                                value={restaurant.link}
-                                onChange={(e) => handleRestaurantChange(index, "link", e.target.value)}
-                            />
-                            <input
-                                type="number"
-                                placeholder="Rating (1-10)"
-                                min="1"
-                                max="10"
-                                value={restaurant.rating}
-                                onChange={(e) => handleRestaurantChange(index, "rating", e.target.value)}
-                            />
-                            {restaurants.length > 1 && (<button type="button" onClick={() => removeRestaurant(index)}>-</button>)}
-                        </div>
-                    ))}
-                    <button type="button" onClick={addRestaurant}>+</button>
-                </label>
+                    <div className="edit-form-food">
+                        <h4>Food 🥘</h4>
+                        {food.map((item, index) => (
+                            <div key={index} className="city-food">
+                                <input
+                                    className="city-food-name"
+                                    type="text"
+                                    placeholder="enter food name"
+                                    value={item.description}
+                                    onChange={(e) => handleFoodChange(index, "description", e.target.value)}
+                                />
+                                <input
+                                    className="city-food-photo"
+                                    type="text"
+                                    placeholder="enter image URL"
+                                    value={item.photo}
+                                    onChange={(e) => handleFoodChange(index, "photo", e.target.value)}
+                                />
+                                {food.length > 1 && (<button type="button" className="remove-food-btn" onClick={() => removeFood(index)}>Delete</button>)}
+                            </div>
+                        ))}
+                        <button type="button" className="add-food-btn" onClick={addFood}>Add New</button>
+                    </div>
 
-                <label className="create">
-                    Places to Visit:
-                    {placesToVisit.map((place, index) => (
-                        <div key={index} className="place-entry">
-                            <input
-                                type="text"
-                                placeholder="Place name"
-                                value={place.name}
-                                onChange={(e) => handlePlaceChange(index, "name", e.target.value)}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Image URL"
-                                value={place.photo}
-                                onChange={(e) => handlePlaceChange(index, "photo", e.target.value)}
-                            />
-                            {placesToVisit.length > 1 && (<button type="button" onClick={() => removePlace(index)}>-</button>)}
-                        </div>
-                    ))}
-                    <button type="button" onClick={addPlace}>+</button>
+                    <div className="edit-form-places">
+                        <h4>Places to Visit 📍</h4>
+                        {placesToVisit.map((place, index) => (
+                            <div key={index} className="city-places">
+                                <input
+                                    className="city-places-name"
+                                    type="text"
+                                    placeholder="enter place name"
+                                    value={place.name}
+                                    onChange={(e) => handlePlaceChange(index, "name", e.target.value)}
+                                />
+                                <input
+                                    className="city-places-photo"
+                                    type="text"
+                                    placeholder="enter image URL"
+                                    value={place.photo}
+                                    onChange={(e) => handlePlaceChange(index, "photo", e.target.value)}
+                                />
+                                {placesToVisit.length > 1 && (<button type="button" className="remove-places-btn" onClick={() => removePlace(index)}>Delete</button>)}
+                            </div>
+                        ))}
+                        <button type="button" className="add-places-btn" onClick={addPlace}>Add New</button>
 
-                </label>
+                    </div>
 
-                <label className="create">
-                    Image:
-                    <input
-                        type="text"
-                        name="image"
-                        placeholder="enter image URL"
-                        value={image}
-                        onChange={(e) => { setImage(e.target.value) }}
-                    />
-                </label>
+                    <div className="edit-form-restaurants">
+                        <h4>Restaurants 🍴</h4>
+                        {restaurants.map((restaurant, index) => (
+                            <div key={index} className="city-restaurants">
+                                <input
+                                    className="city-restaurants-name"
+                                    type="text"
+                                    placeholder="enter restaurant name"
+                                    value={restaurant.name}
+                                    onChange={(e) => handleRestaurantChange(index, "name", e.target.value)}
+                                />
+                                <input
+                                    className="city-restaurants-link"
+                                    type="text"
+                                    placeholder="enter tripadvisor link"
+                                    value={restaurant.link}
+                                    onChange={(e) => handleRestaurantChange(index, "link", e.target.value)}
+                                />
+                                <input
+                                    className="city-restaurants-rating"
+                                    type="number"
+                                    placeholder="rating"
+                                    min="1"
+                                    max="10"
+                                    value={restaurant.rating}
+                                    onChange={(e) => handleRestaurantChange(index, "rating", e.target.value)}
+                                />
+                                {restaurants.length > 1 && (<button type="button" className="remove-restaurants-btn" onClick={() => removeRestaurant(index)}>Delete</button>)}
+                            </div>
+                        ))}
+                        <button type="button" className="add-restaurants-btn" onClick={addRestaurant}>Add New</button>
+                    </div>
 
-                <button type="submit"> Create </button>
+                    <button type="submit" className="create-city-btn"> Create New City</button>
 
-            </form>
+                </form>
+            </div>
 
         </div>
     )
