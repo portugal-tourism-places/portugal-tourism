@@ -4,8 +4,10 @@ function Navbar() {
     return (
         <nav className="Navbar">
             <div className="navbar-items">
-                <NavLink to="/">
-                    <button> Home </button>
+                <NavLink to="/" className={"home-btn"}>
+                    <button className="home-btn-2">
+                        Home
+                    </button>
                 </NavLink>
                 <NavLink to="/about">
                     <button> About us </button>

@@ -4,15 +4,22 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
-  }
+}
 
 h1 {
     text-align: center;
     font-size: 2.5rem;
     color: white;
     margin-bottom: 2rem;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .homePage {
@@ -156,14 +163,15 @@ h1 {
     padding: 8px 40px;
     border-radius: 8px;
     border: none;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: background-color 0.2s;
-    text-decoration: none;
     margin: 10px;
     margin-left: 25px;
     margin-right: 25px;
+    font-family: 'Segoe UI', sans-serif;
+    height: 40px;
 }
 
 .navbar-items {
@@ -172,6 +180,15 @@ h1 {
     justify-content: space-between;
     background-color: #1e3a8a;
     padding: 0.5rem;
+}
+
+.home-btn {
+    text-decoration: none;
+}
+
+.home-btn-2 {
+    display: flex;
+    align-items: center;
 }
 
 .create {
@@ -190,7 +207,7 @@ h1 {
 .region-details {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
 
 .region-details-img {
@@ -212,7 +229,7 @@ h1 {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     gap: 10px;
     width: 50vw;
     border: 3px solid black;
@@ -236,7 +253,7 @@ h1 {
 .region-details-food {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     padding: 1.5rem;
     gap: 10px;
     padding: 1.5rem;
@@ -260,7 +277,7 @@ h1 {
 .region-details-food-recipes {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     width: 25vw;
     padding: 1rem;
     gap: 10px;
@@ -275,14 +292,14 @@ h1 {
 .region-details-food-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     gap: 40px;
 }
 
 .region-details-visit {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     padding: 1.5rem;
     gap: 10px;
     padding: 1.5rem;
@@ -306,7 +323,7 @@ h1 {
 .region-details-visit-places {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     width: 25vw;
     padding: 1rem;
     gap: 10px;
@@ -321,7 +338,7 @@ h1 {
 .region-details-visit-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     gap: 40px;
 }
 
@@ -342,4 +359,157 @@ h1 {
 
 .edit-btn-div {
     margin-top: 25px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-family: 'Segoe UI', sans-serif;
+    ;
+}
+
+.edit-form h4 {
+    text-decoration: underline;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.edit-form-cityName,
+.edit-form-cityImage,
+.edit-form-history {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.city-name,
+.city-photo {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 500px;
+}
+
+.city-history {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 500px;
+    height: 100px;
+    resize: none;
+    overflow-wrap: break-word;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.edit-form-food,
+.edit-form-places,
+.edit-form-restaurants {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+}
+
+.city-food,
+.city-places,
+.city-restaurants {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.city-food-name,
+.city-food-photo,
+.city-places-name,
+.city-places-photo,
+.city-restaurants-name,
+.city-restaurants-link,
+.city-restaurants-rating {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.remove-food-btn,
+.remove-places-btn,
+.remove-restaurants-btn {
+    padding: 5px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    width: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-food-btn,
+.add-places-btn,
+.add-restaurants-btn {
+    padding: 5px;
+    background-color: #007c00;
+    color: white;
+    border: none;
+    width: 90px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.update-city-btn {
+    background-color: #b65303;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+.update-city-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.create-city-btn {
+    background-color: #2403b6;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s;
+    text-decoration: none;
+    margin: 10px;
+    width: 140px;
+    height: 50px;
+}
+
+.create-city-btn:hover {
+    background-color: #bfdbfe;
+}
+
+.create-city-title {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 30px;
 }
