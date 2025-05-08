@@ -5,7 +5,7 @@ function Navbar() {
         <nav className="Navbar">
             <div className="navbar-items">
                 <NavLink to="/" className={"home-btn"}>
-                    <button className="home-btn-2">
+                <button className="home-btn-2" >
                         Home
                     </button>
                 </NavLink>

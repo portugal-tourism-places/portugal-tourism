@@ -14,6 +14,7 @@ function SearchBar({onSearch}){
     return (
         <div className="searchBar">
             <input 
+            className="searchBar-bar"
             type="text"
             placeholder="Search here 🔎"
             onChange={handleChange}
