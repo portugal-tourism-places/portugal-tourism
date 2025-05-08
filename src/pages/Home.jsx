@@ -9,7 +9,7 @@ function HomePage({ regions, onDeleteCity }) {
     return (
         <div>
             <article className="homePage">
-                <h1>Portugal Tourism</h1>
+                <h1> Discover Portugal</h1>
             </article>
             <div className="city-cards">
                 {regions.length > 0 ? (
